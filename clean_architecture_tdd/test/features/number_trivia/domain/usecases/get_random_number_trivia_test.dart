@@ -6,6 +6,7 @@
 import 'package:clean_architecture_tdd/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/repository/number_trivia_repository.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart';
+import 'package:clean_architecture_tdd/features/number_trivia/domain/use_cases/get_random_number_trivia.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -14,7 +15,7 @@ class MockNumberTriviaRepository extends Mock
     implements NumberTriviaRepository {}
 
 void main() {
-  GetConcreteNumberTrivia useCase;
+  GetRandomNumberTrivia useCase;
   MockNumberTriviaRepository mockNumberTriviaRepository;
 
   // Initial setup for test
@@ -22,7 +23,7 @@ void main() {
   setUp(() {
     mockNumberTriviaRepository = MockNumberTriviaRepository();
     // Becase we will pass instance if repository in the actual useCase too
-    useCase = GetConcreteNumberTrivia(mockNumberTriviaRepository);
+    useCase = GetRandomNumberTrivia(mockNumberTriviaRepository);
   });
 
   // Predecided output
@@ -30,21 +31,22 @@ void main() {
   final tNumberTrivia = NumberTrivia(number: tNumber, text: 'Test Number');
 
   // Actual Test code
-  test('should get trivia for the number from the number trivia repository',
+  test(
+      'should get trivia for a random number from the number trivia repository',
       () async {
     // arrange
     // {Provide functionality to the mocked instance of the repository here}
     // We are saying that when we are calling calling getyConcreteNumberTrivia from the repository, then return right side(i.e: success side) of the NumberTriviaRepository
-    when(mockNumberTriviaRepository.getConcreteNumberTrivia(any))
+    when(mockNumberTriviaRepository.getRandomNumberTrivia())
         .thenAnswer((_) async => Right(tNumberTrivia));
 
     //act
-    final result = await useCase(Params(number: tNumber));
+    final result = await useCase(NoParams());
 
     //assert
     expect(result, Right(tNumberTrivia));
     // Adds a layer of protection by telling weather when() was called on same arguments as that of the below arguments
-    verify(mockNumberTriviaRepository.getConcreteNumberTrivia(tNumber));
+    verify(mockNumberTriviaRepository.getRandomNumberTrivia());
     // Checks wheather everything has completed running or not
     verifyNoMoreInteractions(mockNumberTriviaRepository);
   });
