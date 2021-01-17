@@ -1,3 +1,4 @@
+import 'package:clean_architecture_dog_app/core/usecases/usecase.dart';
 import 'package:clean_architecture_dog_app/features/dog_app/domain/enitities/image_object.dart';
 import 'package:clean_architecture_dog_app/features/dog_app/domain/repository/image_object_repository.dart';
 import 'package:clean_architecture_dog_app/features/dog_app/domain/usecases/get_image_object.dart';
@@ -28,7 +29,7 @@ void main() {
     when(mockImageObjectRepository.getImageObject())
         .thenAnswer((_) async => Right(imageObject));
     //act
-    final result = await useCase.execute();
+    final result = await useCase(NoParams());
     //assert
     expect(result, Right(imageObject));
 

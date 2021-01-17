@@ -3,9 +3,9 @@
 // It is a better practice for mocking that data , We use mockito for that
 // In this way we can easily test all the methods irrespective of the data we get
 
+import 'package:clean_architecture_tdd/core/usecases/use_cases.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/repository/number_trivia_repository.dart';
-import 'package:clean_architecture_tdd/features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/use_cases/get_random_number_trivia.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
