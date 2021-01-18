@@ -11,7 +11,7 @@ void main() {
       imageUrl: "https://images.dog.ceo/breeds/pomeranian/n02112018_5349.jpg");
 
   test('should be a sub-class of ImageObject', () async {
-    expect(imageModel, isA<ImageObject>());
+    expect(imageModel, isA<ImageObject>())
   });
 
   // Test for fromJson
