@@ -1,6 +1,7 @@
 // This is a simple abstract class acting as a contract for getting data
 // Does not know from where or how data will arrive
 // Only knows data will arrive and it will have to!
+// So we can say that this is only the contract of repository for getting data
 
 import 'package:clean_architecture_tdd/core/error/failures.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/entities/number_trivia.dart';
