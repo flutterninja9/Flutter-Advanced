@@ -103,18 +103,34 @@ void main() {
         expect(result, equals(Left(ServerFailure())));
       });
     });
-  });
-  group('device is offline', () {
-    setUp(() {
-      when(networkInfo.isConnected).thenAnswer((_) async => false);
-    });
-    test('should return last locally cached data when device is offline',
-        () async {
-      // arrange
-
-      //act
-
-      //assert
+    group('device is offline', () {
+      setUp(() {
+        when(networkInfo.isConnected).thenAnswer((_) async => false);
+      });
+      test('should return last locally cached data when device is offline',
+          () async {
+        // arrange
+        when(localDataSource.getLastNumberTrivia())
+            .thenAnswer((_) async => tNumberTriviaModel);
+        //act
+        final result =
+            await numberTriviaRepositoryImpl.getConcreteNumberTrivia(tNumber);
+        //assert
+        verifyZeroInteractions(remoteDataSource);
+        verify(localDataSource.getLastNumberTrivia());
+        expect(result, Right(tNumberTrivia));
+      });
+      test('should return CacheFailure when there is no cached data', () async {
+        // arrange
+        when(localDataSource.getLastNumberTrivia()).thenThrow(CacheException());
+        //act
+        final result =
+            await numberTriviaRepositoryImpl.getConcreteNumberTrivia(tNumber);
+        //assert
+        verifyZeroInteractions(remoteDataSource);
+        verify(localDataSource.getLastNumberTrivia());
+        expect(result, Left(CacheFailure()));
+      });
     });
   });
 }
