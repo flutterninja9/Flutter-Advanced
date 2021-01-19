@@ -27,10 +27,25 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
   @override
   Future<Either<Failure, NumberTrivia>> getConcreteNumberTrivia(
       int number) async {
+    return await _getTrivia(() {
+      return remoteDataSource.getConcreteNumberTrivia(number);
+    });
+  }
+
+  @override
+  Future<Either<Failure, NumberTrivia>> getRandomNumberTrivia() async {
+    return await _getTrivia(() {
+      return remoteDataSource.getRadnomNumberTrivia();
+    });
+  }
+
+  // We are going to use Higher Order Functions for better code-re-usability, i.e. depending upon argument type we will get concrete or randomNumber trivia
+
+  Future<Either<Failure, NumberTrivia>> _getTrivia(
+      Future<NumberTrivia> Function() getConcreteOrRandom) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteTrivia =
-            await remoteDataSource.getConcreteNumberTrivia(number);
+        final remoteTrivia = await getConcreteOrRandom();
         localDataSource.cacheNumberTrivia(remoteTrivia);
         return Right(remoteTrivia);
       } on ServerException {
@@ -44,11 +59,5 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
         return Left(CacheFailure());
       }
     }
-  }
-
-  @override
-  Future<Either<Failure, NumberTrivia>> getRandomNumberTrivia() {
-    // TODO: implement getRandomNumberTrivia
-    throw UnimplementedError();
   }
 }
