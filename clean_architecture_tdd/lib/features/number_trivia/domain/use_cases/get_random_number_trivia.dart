@@ -1,8 +1,9 @@
-import 'package:clean_architecture_tdd/core/error/failures.dart';
-import 'package:clean_architecture_tdd/core/usecases/use_cases.dart';
-import 'package:clean_architecture_tdd/features/number_trivia/domain/entities/number_trivia.dart';
-import 'package:clean_architecture_tdd/features/number_trivia/domain/repository/number_trivia_repository.dart';
 import 'package:dartz/dartz.dart';
+
+import '../../../../core/error/failures.dart';
+import '../../../../core/usecases/use_cases.dart';
+import '../entities/number_trivia.dart';
+import '../repository/number_trivia_repository.dart';
 
 class GetRandomNumberTrivia implements UseCase<NumberTrivia, NoParams> {
   NumberTriviaRepository numberTriviaRepository;
