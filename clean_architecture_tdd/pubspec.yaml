@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  connectivity: ^0.4.3+7
+  data_connection_checker: ^0.3.4
   cupertino_icons: ^1.0.1
   dartz: ^0.8.6
   equatable: ^0.4.0
