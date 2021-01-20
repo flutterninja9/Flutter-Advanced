@@ -5,4 +5,6 @@ abstract class ErrorModel extends Equatable {
 }
 
 // General Failures
-abstract class ServerFailure extends ErrorModel {}
+class ServerFailure extends ErrorModel {}
+
+class DeviceOfflineFailure extends ErrorModel {}
