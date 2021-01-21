@@ -1,4 +1,5 @@
 import 'package:clean_architecture_tdd/core/network/network_info.dart';
+import 'package:clean_architecture_tdd/features/number_trivia/data/models/number_trivia_model.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
