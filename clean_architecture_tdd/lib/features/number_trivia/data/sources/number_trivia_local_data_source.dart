@@ -9,7 +9,7 @@ import '../../domain/entities/number_trivia.dart';
 
 abstract class NumberTriviaLocalDataSource {
   Future<NumberTrivia> getLastNumberTrivia();
-  Future<void> cacheNumberTrivia(NumberTrivia triviaToCache);
+  Future<void> cacheNumberTrivia(NumberTriviaModel triviaToCache);
 }
 
 const CACHED_NUMBER_TRIVIA = 'CACHED_NUMBER_TRIVIA';
@@ -29,7 +29,10 @@ class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDataSource {
   }
 
   @override
-  Future<void> cacheNumberTrivia(NumberTrivia triviaToCache) {
-    return null;
+  Future<void> cacheNumberTrivia(NumberTriviaModel triviaToCache) {
+    return sharedPreferences.setString(
+      CACHED_NUMBER_TRIVIA,
+      json.encode(triviaToCache.toJson()),
+    );
   }
 }
