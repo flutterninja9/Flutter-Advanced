@@ -35,7 +35,18 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
     NumberTriviaEvent event,
   ) async* {
     if (event is GetTriviaForConcreteNumber) {
-      inputConverter.stringToUnsignedInt(event.numberString);
+      final inputEither =
+          inputConverter.stringToUnsignedInt(event.numberString);
+      // Now    here we will have to deal with a type of Either , it is very powerful
+      // But here we don't need to used try catch or if-else conditions
+      // Instead we can simply make use of simple method, that dartz provides us with
+      // That method is called fold(Function() failure, Function() success)
+      // It will run the failure when Left occures & success when Right occurs
+      yield* inputEither.fold((failure) async* {
+        yield Error(INVALID_INPUT_FAILURE_MESSAGE);
+      }, (int) {
+        throw UnimplementedError();
+      });
     }
   }
 }

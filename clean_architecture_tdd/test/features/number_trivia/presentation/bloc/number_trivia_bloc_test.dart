@@ -60,10 +60,18 @@ void main() {
     });
     test('should emit [Error] when the input is invalid', () {
       //arange
-
-      //act
-
+      when(inputConverter.stringToUnsignedInt(any))
+          .thenReturn(Left(InvalidInputFailure()));
       // assert
+      // assert is above act coz. we are expectng tehse states to be emmited ater the dispatch of theevent form bloc
+      expectLater(
+          bloc.state,
+          emitsInAnyOrder([
+            Empty(),
+            Error(INVALID_INPUT_FAILURE_MESSAGE),
+          ]));
+      //act
+      bloc.dispatch(GetTriviaForConcreteNumber(tNumberString));
     });
   });
 }
