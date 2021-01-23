@@ -12,6 +12,11 @@ import 'package:clean_architecture_tdd/features/number_trivia/domain/use_cases/g
 part 'number_trivia_event.dart';
 part 'number_trivia_state.dart';
 
+const String SERVER_FAILURE_MESSAGE = "Server Failure";
+const String CACHE_FAILURE_MESSAGE = "Cache Failure";
+const String INVALID_INPUT_FAILURE_MESSAGE =
+    "Inavlid Input - The number must be a positive integer.";
+
 class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   final GetConcreteNumberTrivia getConcreteNumberTrivia;
   final GetRandomNumberTrivia getRandomNumberTrivia;

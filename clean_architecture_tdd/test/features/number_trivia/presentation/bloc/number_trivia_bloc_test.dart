@@ -58,5 +58,12 @@ void main() {
       //assert
       verify(inputConverter.stringToUnsignedInt(tNumberString));
     });
+    test('should emit [Error] when the input is invalid', () {
+      //arange
+
+      //act
+
+      // assert
+    });
   });
 }
