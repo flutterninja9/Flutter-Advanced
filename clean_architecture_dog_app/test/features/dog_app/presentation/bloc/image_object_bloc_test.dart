@@ -42,8 +42,8 @@ void main() {
           .thenAnswer((_) async => Right(tImageObject));
       //assert
       expectLater(
-          Empty(),
-          emitsInOrder([
+          bloc.state,
+          emitsInAnyOrder([
             Empty(),
             Loading(),
             Loaded(tImageObject),
@@ -59,11 +59,28 @@ void main() {
           .thenAnswer((_) async => Left(ServerFailure()));
       //assert
       expectLater(
-          Empty(),
-          emitsInOrder([
+          bloc.state,
+          emitsInAnyOrder([
             Empty(),
             Loading(),
             Failed(SERVER_FAILURE),
+          ]));
+      //act
+      bloc.dispatch(GetObjectForImage());
+    });
+    test(
+        'should emit [Loading,ErrorModel] while calling the data resources is failed',
+        () async {
+      //arrange
+      when(getImageObject(NoParams()))
+          .thenAnswer((_) async => Left(DeviceOfflineFailure()));
+      //assert
+      expectLater(
+          bloc.state,
+          emitsInAnyOrder([
+            Empty(),
+            Loading(),
+            Failed(DEVICE_OFLLINE_FAILURE),
           ]));
       //act
       bloc.dispatch(GetObjectForImage());
