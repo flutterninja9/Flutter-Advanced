@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:clean_architecture_tdd/core/error/failures.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -44,9 +45,26 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
       // It will run the failure when Left occures & success when Right occurs
       yield* inputEither.fold((failure) async* {
         yield Error(INVALID_INPUT_FAILURE_MESSAGE);
-      }, (int) {
-        throw UnimplementedError();
+      }, (integer) async* {
+        yield Loading();
+        final failureOrTrivia =
+            await getConcreteNumberTrivia(Params(number: integer));
+        yield failureOrTrivia.fold(
+          (failure) => Error(_mapFailureToMessage(failure)),
+          (trivia) => Loaded(trivia: trivia),
+        );
       });
+    }
+  }
+
+  String _mapFailureToMessage(Failure failure) {
+    switch (failure.runtimeType) {
+      case ServerFailure:
+        return SERVER_FAILURE_MESSAGE;
+      case CacheFailure:
+        return CACHE_FAILURE_MESSAGE;
+      default:
+        return 'Unexpected Error Occured';
     }
   }
 }

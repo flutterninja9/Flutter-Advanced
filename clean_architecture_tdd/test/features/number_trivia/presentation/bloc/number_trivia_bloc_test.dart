@@ -1,3 +1,4 @@
+import 'package:clean_architecture_tdd/core/error/failures.dart';
 import 'package:clean_architecture_tdd/core/utils/input_converter.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart';
@@ -45,12 +46,15 @@ void main() {
     final tNumberTrivia =
         NumberTrivia(number: tNumberParsed, text: "Test Text");
 
+    void setupMockInputConverterSuccess() =>
+        when(inputConverter.stringToUnsignedInt(any))
+            .thenReturn(Right(tNumberParsed));
+
     // tests goes here
     test('should call InputConverter for parsing the String to Unsigned Int',
         () async {
       //arrange
-      when(inputConverter.stringToUnsignedInt(any))
-          .thenReturn(Right(tNumberParsed));
+      setupMockInputConverterSuccess();
       //act
       bloc.dispatch(GetTriviaForConcreteNumber(tNumberString));
       // For awaiting for this call coz. its a stream and it takes time to complete
@@ -69,6 +73,68 @@ void main() {
           emitsInAnyOrder([
             Empty(),
             Error(INVALID_INPUT_FAILURE_MESSAGE),
+          ]));
+      //act
+      bloc.dispatch(GetTriviaForConcreteNumber(tNumberString));
+    });
+    test(
+        'should return NumberTrivia, when call to getConcreteNumberTrivia is successfull',
+        () async {
+      //arrange
+      setupMockInputConverterSuccess();
+      when(getConcreteNumberTrivia(any))
+          .thenAnswer((_) async => Right(tNumberTrivia));
+      //act
+      bloc.dispatch(GetTriviaForConcreteNumber(tNumberString));
+      await untilCalled(getConcreteNumberTrivia(any));
+      //assert
+      verify(getConcreteNumberTrivia(Params(number: tNumberParsed)));
+    });
+    test('should emit [LOADING,LOADED] when data is gotten successfully',
+        () async {
+      //arrange
+      setupMockInputConverterSuccess();
+      when(getConcreteNumberTrivia(any))
+          .thenAnswer((_) async => Right(tNumberTrivia));
+      //assert later
+      expectLater(
+          bloc.state,
+          emitsInAnyOrder([
+            Empty(),
+            Loading(),
+            Loaded(trivia: tNumberTrivia),
+          ]));
+      //act
+      bloc.dispatch(GetTriviaForConcreteNumber(tNumberString));
+    });
+    test('should emit [LOADING,ERROR] when getting data is failed', () async {
+      //arrange
+      setupMockInputConverterSuccess();
+      when(getConcreteNumberTrivia(any))
+          .thenAnswer((_) async => Left(ServerFailure()));
+      //assert later
+      expectLater(
+          bloc.state,
+          emitsInAnyOrder([
+            Empty(),
+            Loading(),
+            Error(SERVER_FAILURE_MESSAGE),
+          ]));
+      //act
+      bloc.dispatch(GetTriviaForConcreteNumber(tNumberString));
+    });
+    test('should emit [LOADING,ERROR] when getting data is failed', () async {
+      //arrange
+      setupMockInputConverterSuccess();
+      when(getConcreteNumberTrivia(any))
+          .thenAnswer((_) async => Left(CacheFailure()));
+      //assert later
+      expectLater(
+          bloc.state,
+          emitsInAnyOrder([
+            Empty(),
+            Loading(),
+            Error(CACHE_FAILURE_MESSAGE),
           ]));
       //act
       bloc.dispatch(GetTriviaForConcreteNumber(tNumberString));
