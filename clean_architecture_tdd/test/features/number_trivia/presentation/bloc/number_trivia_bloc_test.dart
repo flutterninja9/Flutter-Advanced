@@ -1,4 +1,5 @@
 import 'package:clean_architecture_tdd/core/error/failures.dart';
+import 'package:clean_architecture_tdd/core/usecases/use_cases.dart';
 import 'package:clean_architecture_tdd/core/utils/input_converter.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart';
@@ -138,6 +139,73 @@ void main() {
           ]));
       //act
       bloc.dispatch(GetTriviaForConcreteNumber(tNumberString));
+    });
+  });
+
+  // group for getRandomNumberTrivia
+  group('GetTriviaForRandomNumber', () {
+    final tNumberParsed = 1;
+    final tNumberTrivia =
+        NumberTrivia(number: tNumberParsed, text: "Test Text");
+
+    // tests goes here
+    test(
+        'should return NumberTrivia, when call to getConcreteNumberTrivia is successfull',
+        () async {
+      //arrange
+      when(getRandomNumberTrivia(NoParams()))
+          .thenAnswer((_) async => Right(tNumberTrivia));
+      //act
+      bloc.dispatch(GetTriviaForRandomNumber());
+      await untilCalled(getRandomNumberTrivia(NoParams()));
+      //assert
+      verify(getRandomNumberTrivia(NoParams()));
+    });
+    test('should emit [LOADING,LOADED] when data is gotten successfully',
+        () async {
+      //arrange
+      when(getRandomNumberTrivia(NoParams()))
+          .thenAnswer((_) async => Right(tNumberTrivia));
+      //assert later
+      expectLater(
+          bloc.state,
+          emitsInAnyOrder([
+            Empty(),
+            Loading(),
+            Loaded(trivia: tNumberTrivia),
+          ]));
+      //act
+      bloc.dispatch(GetTriviaForRandomNumber());
+    });
+    test('should emit [LOADING,ERROR] when getting data is failed', () async {
+      //arrange
+      when(getRandomNumberTrivia(NoParams()))
+          .thenAnswer((_) async => Left(ServerFailure()));
+      //assert later
+      expectLater(
+          bloc.state,
+          emitsInAnyOrder([
+            Empty(),
+            Loading(),
+            Error(SERVER_FAILURE_MESSAGE),
+          ]));
+      //act
+      bloc.dispatch(GetTriviaForRandomNumber());
+    });
+    test('should emit [LOADING,ERROR] when getting data is failed', () async {
+      //arrange
+      when(getRandomNumberTrivia(NoParams()))
+          .thenAnswer((_) async => Left(CacheFailure()));
+      //assert later
+      expectLater(
+          bloc.state,
+          emitsInAnyOrder([
+            Empty(),
+            Loading(),
+            Error(CACHE_FAILURE_MESSAGE),
+          ]));
+      //act
+      bloc.dispatch(GetTriviaForRandomNumber());
     });
   });
 }
