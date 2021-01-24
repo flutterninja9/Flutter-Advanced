@@ -9,6 +9,9 @@ import 'package:meta/meta.dart';
 part 'image_object_event.dart';
 part 'image_object_state.dart';
 
+String SERVER_FAILURE = 'Server Failure';
+String DEVICE_FLLINE_FAILURE = 'Device is Oflline.';
+
 class ImageObjectBloc extends Bloc<ImageObjectEvent, ImageObjectState> {
   final GetImageObject imageObject;
 
