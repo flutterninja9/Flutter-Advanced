@@ -1,6 +1,8 @@
+import 'package:clean_architecture_dog_app/injection_container.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  init(); //! Dependency Injection for injecting all the functionalities in a single go
   runApp(MyApp());
 }
 
