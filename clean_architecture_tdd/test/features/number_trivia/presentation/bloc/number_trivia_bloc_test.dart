@@ -169,7 +169,7 @@ void main() {
       //assert later
       expectLater(
           bloc.state,
-          emitsInAnyOrder([
+          emitsInOrder([
             Empty(),
             Loading(),
             Loaded(trivia: tNumberTrivia),
@@ -184,7 +184,7 @@ void main() {
       //assert later
       expectLater(
           bloc.state,
-          emitsInAnyOrder([
+          emitsInOrder([
             Empty(),
             Loading(),
             Error(SERVER_FAILURE_MESSAGE),
@@ -199,7 +199,7 @@ void main() {
       //assert later
       expectLater(
           bloc.state,
-          emitsInAnyOrder([
+          emitsInOrder([
             Empty(),
             Loading(),
             Error(CACHE_FAILURE_MESSAGE),
