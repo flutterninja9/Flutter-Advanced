@@ -4,9 +4,10 @@ A basic dog app. Based on the uncle Bob's Clean Architecture.
 
 ## Screenschots
 
-![Oops!](https://github.com/flutterninja9/Flutter-Advanced/blob/main/clean_architecture_dog_app/ss/ssa.png?raw=true)
+<img src="https://github.com/flutterninja9/Flutter-Advanced/blob/main/clean_architecture_dog_app/ss/ssa.png?raw=true" width="100" height="100"/>
+<p></p>
+<img src="https://github.com/flutterninja9/Flutter-Advanced/blob/main/clean_architecture_dog_app/ss/ssa.png?raw=true" width="100" height="100"/>
 
-![Oops!](https://github.com/flutterninja9/Flutter-Advanced/blob/main/clean_architecture_dog_app/ss/ssa.png?raw=true)
 ## Getting Started
 
 This project is a starting point for a Flutter application.
