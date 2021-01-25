@@ -24,13 +24,13 @@ class NumberTriviaRemoteDataSourceImpl implements NumberTriviaRemoteDataSource {
   // Implementation for getConcreteNumberTrivia
 
   Future<NumberTriviaModel> getConcreteNumberTrivia(int number) =>
-      _getNumberTriviaFromURL(url: 'http://numbersapi.com/$number');
+      _getNumberTriviaFromURL(url: 'https://numbersapi.com/$number');
 
   // Implementation for getRandomNumberTrivia
 
   @override
   Future<NumberTriviaModel> getRadnomNumberTrivia() =>
-      _getNumberTriviaFromURL(url: 'http://numbersapi.com/random');
+      _getNumberTriviaFromURL(url: 'https://numbersapi.com/random');
 
   // Rafactored Code for fetching NumberTriviaModel by getting parsing the jsonResponse
   Future<NumberTriviaModel> _getNumberTriviaFromURL({String url}) async {

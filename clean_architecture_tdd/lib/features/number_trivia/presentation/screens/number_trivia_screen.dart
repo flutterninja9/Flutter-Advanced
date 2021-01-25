@@ -28,11 +28,8 @@ Widget _buildBody(BuildContext context) {
         ),
         BlocBuilder<NumberTriviaBloc, NumberTriviaState>(
           builder: (context, state) {
-            if (state is Empty) {
-              return MessageDisplayed(
-                messageDisplayed: "Start searching!",
-              );
-            } else if (state is Loading) {
+            print(state);
+            if (state is Loading) {
               return LoadingWidget();
             } else if (state is Loaded) {
               return TriviaDisplayed(
@@ -43,7 +40,9 @@ Widget _buildBody(BuildContext context) {
                 messageDisplayed: state.message,
               );
             } else {
-              return LoadingWidget();
+              return MessageDisplayed(
+                messageDisplayed: "Start searching!",
+              );
             }
           },
         ),
