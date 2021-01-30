@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "408106746363",
+    "project_id": "listly-87022",
+    "storage_bucket": "listly-87022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408106746363:android:8f15a5010e9d041ff08b5e",
+        "android_client_info": {
+          "package_name": "com.tfn.listly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "408106746363-75q06u4l2knh2f359idht6vmoq1d7qva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tfn.listly",
+            "certificate_hash": "111ebe2a6d92d46f9643536eea9e0f985e64436a"
+          }
+        },
+        {
+          "client_id": "408106746363-v1k3rkfjg6927cjlbvp9ovdpnv61p806.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADjE1eOl9Ki-F5GVkEyOKUUVYabbrur7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "408106746363-v1k3rkfjg6927cjlbvp9ovdpnv61p806.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
