@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_brand_icons/flutter_brand_icons.dart';
 import 'package:get/get.dart';
-import 'package:listly/core/utils/themes/appTextThemes.dart';
 import 'package:listly/features/login/presentation/bloc/authentication_bloc.dart';
+import 'package:listly/features/login/presentation/widgets/authSuccessWidget.dart';
+import 'package:listly/features/login/presentation/widgets/loadingWidget.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -31,73 +32,30 @@ class SplashScreen extends StatelessWidget {
                 child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
                   builder: (context, state) {
                     if (state is AuthenticationInitial) {
-                      return MaterialButton(
-                        onPressed: () {
-                          BlocProvider.of<AuthenticationBloc>(context)
-                              .add(SignInWithGoogle());
-                        },
-                        color: Get.theme.primaryColor,
-                        textTheme: ButtonTextTheme.primary,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(BrandIcons.google),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Sign in with Google",
-                              style: AppTextThemes.btnTextMed,
-                            ),
-                          ],
-                        ),
-                      );
+                      return AuthStateButton(
+                          icon: Icon(BrandIcons.google),
+                          label: 'Sign in with Google',
+                          onPressed: () => context
+                              .read<AuthenticationBloc>()
+                              .add(SignInWithGoogle()));
                     } else if (state is Authenticating) {
-                      return CircularProgressIndicator();
+                      return LoadingWidget();
                     } else if (state is AuthenticationFailed) {
-                      return MaterialButton(
-                        onPressed: () {
-                          Get.offNamed('/home');
-                        },
-                        color: Get.theme.primaryColor,
-                        textTheme: ButtonTextTheme.primary,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(BrandIcons.google),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Sign in with Google",
-                              style: AppTextThemes.btnTextMed,
-                            ),
-                          ],
-                        ),
+                      return AuthStateButton(
+                        icon: Icon(BrandIcons.google),
+                        label: 'Sign in with Google',
+                        onPressed: () => context
+                            .read<AuthenticationBloc>()
+                            .add(SignInWithGoogle()),
                       );
                     } else if (state is Authenticated) {
-                      return MaterialButton(
-                        onPressed: () {
-                          Get.offNamed('/home');
-                        },
-                        color: Get.theme.primaryColor,
-                        textTheme: ButtonTextTheme.primary,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_right_sharp),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Start making list",
-                              style: AppTextThemes.btnTextMed,
-                            ),
-                          ],
-                        ),
+                      return AuthStateButton(
+                        icon: Icon(Icons.navigate_next),
+                        label: 'Start making list',
+                        onPressed: () => Get.offAllNamed('/home'),
                       );
                     } else {
-                      return CircularProgressIndicator();
+                      return LoadingWidget();
                     }
                   },
                 ),

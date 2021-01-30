@@ -6,6 +6,7 @@ class AppTextThemes {
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle titleStyle =
-      GoogleFonts.manrope(fontWeight: FontWeight.w600, fontSize: 17);
+  static TextStyle titleStyle = GoogleFonts.spartan(
+    fontWeight: FontWeight.w600,
+  );
 }
