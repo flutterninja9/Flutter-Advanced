@@ -23,10 +23,4 @@ class LoginRepo implements AuthUseCases {
         UserModel(profilePic: user.photoURL, email: user.email, uid: user.uid);
     return userModel;
   }
-
-  @override
-  Future<void> signOutGoogle() async {
-    googleSignIn.signOut();
-    _auth.signOut();
-  }
 }
