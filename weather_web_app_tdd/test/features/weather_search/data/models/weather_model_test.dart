@@ -40,4 +40,23 @@ void main() {
       expect(result, tWeather);
     });
   });
+
+  group('toJson', () {
+    test('should return a Map of json of corresponding Weather model',
+        () async {
+      //act
+      // Expecting a refactored form of jsonRespose()
+      final expectedJson = {
+        'pressure': 1010,
+        'temprature': 272.74,
+        'description': 'overcast clouds',
+        'city': 'London',
+        'humidity': 69,
+        'main': 'Clouds',
+      };
+      final result = tWeather.toJson();
+      //assert
+      expect(expectedJson, result);
+    });
+  });
 }

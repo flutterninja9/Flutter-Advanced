@@ -29,4 +29,14 @@ class WeatherModel extends Weather {
     );
     return weatherModel;
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'pressure': pressure,
+      'description': description,
+      'city': city,
+      'temprature': temprature,
+      'humidity': humidity,
+      'main': main,
+    };
+  }
 }
