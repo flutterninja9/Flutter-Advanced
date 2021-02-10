@@ -29,5 +29,15 @@ void main() {
       //assert
       expect(result, tWeather);
     });
+    test(
+        'should return a valid WeatherModel when fields are given with doubles',
+        () async {
+      Map<String, dynamic> jsonMap =
+          jsonDecode(fixtureReader(path: 'weather_data_double.json'));
+      //act
+      final result = WeatherModel.fromJson(jsonMap);
+      //assert
+      expect(result, tWeather);
+    });
   });
 }

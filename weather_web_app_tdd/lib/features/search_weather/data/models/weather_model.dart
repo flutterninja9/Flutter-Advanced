@@ -19,13 +19,14 @@ class WeatherModel extends Weather {
         );
 
   factory WeatherModel.fromJson(Map<String, dynamic> jsonMap) {
-    return WeatherModel(
-      pressure: jsonMap["main"]["pressure"],
+    WeatherModel weatherModel = WeatherModel(
+      pressure: (jsonMap["main"]["pressure"] as num).toInt(),
       description: jsonMap["weather"][0]["description"],
       city: jsonMap["name"],
       temprature: jsonMap["main"]["temp"],
-      humidity: jsonMap["main"]["humidity"],
+      humidity: (jsonMap["main"]["humidity"] as num).toInt(),
       main: jsonMap["weather"][0]["main"],
     );
+    return weatherModel;
   }
 }
