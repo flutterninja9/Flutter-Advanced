@@ -34,8 +34,6 @@ void main() {
     );
   });
 
-// Tests for device online and offline
-
   test('should check if the device is online', () async {
     //arrange
     when(networkInfo.isConnected).thenAnswer((_) async => true);
@@ -44,19 +42,22 @@ void main() {
     //assert
     verify(networkInfo.isConnected);
   });
+
+  // Temp data for tests
+  final tWeather = WeatherModel(
+    pressure: 1010,
+    temprature: 272.74,
+    description: 'overcast clouds',
+    city: 'London',
+    main: 'Clouds',
+    humidity: 69,
+  );
+
+  // Tests for device online
   group('device online', () {
-    final tWeather = WeatherModel(
-      pressure: 1010,
-      temprature: 272.74,
-      description: 'overcast clouds',
-      city: 'London',
-      main: 'Clouds',
-      humidity: 69,
-    );
     setUp(() {
       when(networkInfo.isConnected).thenAnswer((_) async => true);
     });
-    // Tests for deive Online
     test(
         'should return a WeatherModel when the call to rmeoteData source is successfull',
         () async {
@@ -93,6 +94,35 @@ void main() {
       verify(remoteDataSource.searchWeather(city: 'London'));
       verifyZeroInteractions(localDataSource);
       expect(result, equals(Left(ServerFailure())));
+    });
+  });
+
+  // For deice offline
+  group('device oflline', () {
+    setUp(() {
+      when(networkInfo.isConnected).thenAnswer((_) async => false);
+    });
+    test(
+        'should return the last cache data locally when the cache data is present',
+        () async {
+      //arrange
+      when(localDataSource.getLastWeather()).thenAnswer((_) async => tWeather);
+      //act
+      final result = await weatherRepositoryImpl.searchWeather(city: 'London');
+      //assert
+      verifyZeroInteractions(remoteDataSource);
+      verify(localDataSource.getLastWeather());
+      expect(result, equals(Right(tWeather)));
+    });
+    test('should throw CacheFailure when no cache data is found', () async {
+      //arrange
+      when(localDataSource.getLastWeather()).thenThrow(CacheException());
+      //act
+      final result = await weatherRepositoryImpl.searchWeather(city: 'London');
+      //assert
+      expect(result, equals(Left(CacheFailure())));
+      verify(localDataSource.getLastWeather());
+      verifyZeroInteractions(remoteDataSource);
     });
   });
 }
