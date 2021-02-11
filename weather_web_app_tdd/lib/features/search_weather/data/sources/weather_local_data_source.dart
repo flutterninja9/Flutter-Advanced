@@ -20,7 +20,10 @@ class WeatherLocalDataSourceImpl implements WeatherLocalDataSource {
   WeatherLocalDataSourceImpl(this.sharedPreferences);
   @override
   Future<void> cacheWeather(WeatherModel weatherToCache) {
-    return null;
+    return sharedPreferences.setString(
+      CACHE_WEATHER,
+      jsonEncode(weatherToCache),
+    );
   }
 
   @override

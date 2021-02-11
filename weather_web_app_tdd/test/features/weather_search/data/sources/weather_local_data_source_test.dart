@@ -44,4 +44,23 @@ void main() {
       expect(() => call(), throwsA(TypeMatcher<CacheException>()));
     });
   });
+
+  group('cacheWeather', () {
+    final tWeather = WeatherModel(
+      pressure: 1010,
+      temprature: 272.74,
+      description: 'overcast clouds',
+      city: 'London',
+      main: 'Clouds',
+      humidity: 69,
+    );
+
+    test('should call sharedPrefrences to cache the data locally', () async {
+      //act
+      localDataSourceImpl.cacheWeather(tWeather);
+      final expectedString = jsonEncode(tWeather.toJson());
+      //assert
+      verify(mockSharedPrefrences.setString(CACHE_WEATHER, expectedString));
+    });
+  });
 }
