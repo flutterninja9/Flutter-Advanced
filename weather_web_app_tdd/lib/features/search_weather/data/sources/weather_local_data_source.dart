@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weather_web_app_tdd/core/errors/exceptions.dart';
 
 import '../models/weather_model.dart';
+
+const CACHE_WEATHER = 'CACHED_WEATHER';
 
 abstract class WeatherLocalDataSource {
   // will throw a [CacheException] on every type of errorCodes
@@ -15,13 +20,16 @@ class WeatherLocalDataSourceImpl implements WeatherLocalDataSource {
   WeatherLocalDataSourceImpl(this.sharedPreferences);
   @override
   Future<void> cacheWeather(WeatherModel weatherToCache) {
-    // TODO: implement cacheWeather
-    throw UnimplementedError();
+    return null;
   }
 
   @override
   Future<WeatherModel> getLastWeather() {
-    // TODO: implement getLastWeather
-    throw UnimplementedError();
+    final jsonMap = sharedPreferences.getString(CACHE_WEATHER);
+    if (jsonMap != null) {
+      return Future.value(WeatherModel.fromJsonCached(jsonDecode(jsonMap)));
+    } else {
+      throw CacheException();
+    }
   }
 }

@@ -29,6 +29,20 @@ class WeatherModel extends Weather {
     );
     return weatherModel;
   }
+
+  // For the cached files only
+  factory WeatherModel.fromJsonCached(Map<String, dynamic> jsonMap) {
+    WeatherModel weatherModel = WeatherModel(
+      pressure: (jsonMap["pressure"] as num).toInt(),
+      description: jsonMap["description"],
+      city: jsonMap["city"],
+      temprature: jsonMap["temprature"],
+      humidity: (jsonMap["humidity"] as num).toInt(),
+      main: jsonMap["main"],
+    );
+    return weatherModel;
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'pressure': pressure,
