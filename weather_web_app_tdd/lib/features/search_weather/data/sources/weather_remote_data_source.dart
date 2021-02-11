@@ -20,7 +20,7 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
   @override
   Future<WeatherModel> searchWeather({String city}) async {
     String url =
-        "http://api.openweathermap.org/data/2.5/weather?q=$city&appid=${Secrets.API_KEY}";
+        "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=${Secrets.API_KEY}";
     http.Response response = await httpClient.get(
       url,
       headers: {"Content-Type": 'application/json'},
