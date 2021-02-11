@@ -18,7 +18,7 @@ class WeatherScreen extends StatelessWidget {
           Container(
             height: Get.height,
             width: Get.width,
-            padding: EdgeInsets.only(top: 55),
+            padding: EdgeInsets.only(top: 80),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
