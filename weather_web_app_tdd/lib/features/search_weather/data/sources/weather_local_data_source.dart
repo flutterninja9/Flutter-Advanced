@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weather_web_app_tdd/core/errors/exceptions.dart';
+import '../../../../core/errors/exceptions.dart';
 
 import '../models/weather_model.dart';
 

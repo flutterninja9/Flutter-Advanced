@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:weather_web_app_tdd/core/errors/exceptions.dart';
-import 'package:weather_web_app_tdd/core/utils/secrets.dart';
+import '../../../../core/errors/exceptions.dart';
+import '../../../../core/utils/secrets.dart';
 import '../models/weather_model.dart';
 
 abstract class WeatherRemoteDataSource {
