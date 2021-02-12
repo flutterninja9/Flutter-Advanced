@@ -31,7 +31,7 @@ void main() {
       humidity: 69,
     );
     test(
-        'should return a WeatherModel when call to rmeote data source is successfull and serverCode is 200',
+        'should return a WeatherModel when call to remote data source is successfull and serverCode is 200',
         () async {
       //arrange
       when(mockHttpClient.get(any, headers: anyNamed('headers'))).thenAnswer(
@@ -40,12 +40,9 @@ void main() {
       //act
       final result = await remoteDataSourceImpl.searchWeather(city: 'London');
       //assert
-      String city = 'London';
-      String url =
-          'http://api.openweathermap.org/data/2.5/weather?q=$city&appid=${Secrets.API_KEY}';
       verify(
         mockHttpClient.get(
-          url,
+          any,
           headers: {"Content-Type": 'application/json'},
         ),
       );
