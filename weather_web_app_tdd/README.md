@@ -6,11 +6,11 @@ A basic weather app made while followng the clean code principles.
 <p></p>
 <img src="https://github.com/flutterninja9/Flutter-Advanced/blob/main/weather_web_app_tdd/ss/ss1.png?raw=true" width="360" height="720"/>
 <p></p>
-# Supports Caching
+# Caching
 <p></p>
 <img src="https://github.com/flutterninja9/Flutter-Advanced/blob/main/weather_web_app_tdd/ss/cache_state.png?raw=true" width="360" height="720"/>
 <p></p>
-## Handling Exceptions 
+# Handling_Exceptions 
 <br>
 <img src="https://github.com/flutterninja9/Flutter-Advanced/blob/main/weather_web_app_tdd/ss/error_state.png?raw=true" width="360" height="720"/>
 <p></p>
