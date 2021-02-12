@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weather_web_app_tdd/features/search_weather/presentation/widgets/weatherCard.dart';
+import 'weatherCard.dart';
 import '../../data/models/weather_model.dart';
 
 class WeatherFetched extends StatelessWidget {
@@ -26,7 +26,7 @@ class WeatherFetched extends StatelessWidget {
       'Pressure': weather.pressure.toString() + " hPa",
       'Humidity': weather.humidity.toString() + " CM",
       'About': weather.main,
-      'More': weather.description,
+      'More': weather.description.capitalize,
     };
     List<Color> cardColors = [
       Get.theme.cardColor,

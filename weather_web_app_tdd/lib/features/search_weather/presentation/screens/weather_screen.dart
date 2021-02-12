@@ -24,8 +24,8 @@ class WeatherScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Weather-Man',
-                  style: GoogleFonts.poppins(
+                  'WeatherMan',
+                  style: GoogleFonts.montserrat(
                       fontSize: 40,
                       fontWeight: FontWeight.w600,
                       color: Get.theme.primaryColor),
