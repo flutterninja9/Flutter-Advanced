@@ -1,6 +1,19 @@
-# weather_web_app_tdd
+# Weather App Based on Clean Architecture
 
-A new Flutter project.
+A basic weather app made while followng the clean code principles.
+
+# Homescreen
+<p></p>
+<img src="https://github.com/flutterninja9/Flutter-Advanced/blob/main/weather_web_app_tdd/ss/ss1.png?raw=true" width="360" height="720"/>
+<p></p>
+# Caching
+<p></p>
+<img src="https://github.com/flutterninja9/Flutter-Advanced/blob/main/weather_web_app_tdd/ss/cache_state.png?raw=true" width="360" height="720"/>
+<p></p>
+# Handling_Exceptions 
+<br>
+<img src="https://github.com/flutterninja9/Flutter-Advanced/blob/main/weather_web_app_tdd/ss/error_state.png?raw=true" width="360" height="720"/>
+<p></p>
 
 ## Getting Started
 
