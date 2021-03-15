@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flavors.dart';
+import '../flavors.dart';
 
 String getTitle(Flavor flavor) {
   switch (flavor) {

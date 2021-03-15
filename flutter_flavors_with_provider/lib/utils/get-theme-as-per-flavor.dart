@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flavors.dart';
-import 'package:flutter_riverpod/utils/themes.dart';
+import '../flavors.dart';
+import 'themes.dart';
 
 ThemeData getThemeAsPerEnv(Flavor flavor) {
   switch (flavor) {

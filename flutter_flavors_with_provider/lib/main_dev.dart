@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flavors.dart';
-import 'package:flutter_riverpod/my-app.dart';
+import 'flavors.dart';
+import 'my-app.dart';
 import 'package:provider/provider.dart';
 
 void main() {
