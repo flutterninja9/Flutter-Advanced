@@ -1,0 +1,14 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "clean_architecture_tdd",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    }
+  ],
+  "generated": "2021-03-23T05:07:04.417288Z",
+  "generator": "pub",
+  "generatorVersion": "2.12.0"
+}
