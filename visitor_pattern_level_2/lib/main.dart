@@ -1,7 +1,8 @@
-import 'package:clean_architecture_tdd/functional-classes/normal-tax-visitor.dart';
-import 'package:clean_architecture_tdd/visitors/alchohol.dart';
-import 'package:clean_architecture_tdd/visitors/necessties.dart';
-import 'package:clean_architecture_tdd/visitors/tobacco.dart';
+import 'package:clean_architecture_tdd/usecases/normal-tax-visitor.dart';
+
+import 'entities/alchohol.dart';
+import 'entities/necessties.dart';
+import 'entities/tobacco.dart';
 
 void main() {
   final NormalTaxVisitor taxVisitor = NormalTaxVisitor();

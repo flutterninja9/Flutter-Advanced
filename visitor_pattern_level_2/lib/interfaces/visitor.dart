@@ -1,6 +1,6 @@
-import 'package:clean_architecture_tdd/visitors/alchohol.dart';
-import 'package:clean_architecture_tdd/visitors/necessties.dart';
-import 'package:clean_architecture_tdd/visitors/tobacco.dart';
+import 'package:clean_architecture_tdd/entities/alchohol.dart';
+import 'package:clean_architecture_tdd/entities/necessties.dart';
+import 'package:clean_architecture_tdd/entities/tobacco.dart';
 
 abstract class Visitor {
   double visitAlchohol(Alchohol alchohol);
