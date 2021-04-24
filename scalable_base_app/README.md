@@ -141,7 +141,7 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
     "@@locale": "en",
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the CounterApp Page"
+        "description": "Text shown in the AppBar of the Counter Page"
     }
 }
 ```
