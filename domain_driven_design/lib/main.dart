@@ -1,6 +1,9 @@
+import 'package:domain_driven_design/injection.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 void main() {
+  configureInjection(Environment.prod);
   runApp(MyApp());
 }
 
@@ -12,13 +15,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

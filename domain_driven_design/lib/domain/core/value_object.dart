@@ -1,7 +1,9 @@
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
+
 import 'errors.dart';
 import 'failures.dart';
-import 'package:flutter/cupertino.dart';
 
 // immutable is used for forcing the instantiation of only final fields insde the implementor classes
 @immutable

@@ -1,12 +1,15 @@
-import '../../domain/auth/auth_failure.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:dartz/dartz.dart';
-import '../../domain/auth/i_auth_facade.dart';
-import '../../domain/auth/value_objects.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 
+import '../../domain/auth/auth_failure.dart';
+import '../../domain/auth/i_auth_facade.dart';
+import '../../domain/auth/value_objects.dart';
+
+@LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
@@ -17,8 +20,8 @@ class FirebaseAuthFacade implements IAuthFacade {
   );
   @override
   Future<Either<AuthFailure, Unit>> loginWithEmailAndPassword({
-    @required EmailAddress emailAddress,
-    @required Password password,
+    required EmailAddress emailAddress,
+    required Password password,
   }) async {
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
@@ -41,8 +44,8 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
-    @required EmailAddress emailAddress,
-    @required Password password,
+    required EmailAddress emailAddress,
+    required Password password,
   }) async {
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
