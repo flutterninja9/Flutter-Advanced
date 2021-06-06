@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain_driven_design/domain/core/errors.dart';
 import 'package:domain_driven_design/domain/core/failures.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -7,6 +8,15 @@ import 'package:flutter/cupertino.dart';
 abstract class ValueObject<T> {
   const ValueObject();
   Either<ValueFailure<T>, T> get value;
+
+  /// throws [UnexpectedValueError] containing the [ValueFailure]
+  T getOrCrash() {
+    return value.fold(
+      (f) => throw UnexpectedValueError(f),
+      // id : identitiy Same as writing (right) => right
+      id,
+    );
+  }
 
   bool isValid() => value.isRight();
 
