@@ -7,6 +7,7 @@ abstract class SignInFormState with _$SignInFormState {
     @required Password password,
     @required bool isSubmitting,
     @required bool showErrorMessages,
+    // Option<None,Some>
     @required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
   }) = _SignInFormState;
   factory SignInFormState.initial() => SignInFormState(
@@ -14,6 +15,7 @@ abstract class SignInFormState with _$SignInFormState {
         password: Password(''),
         isSubmitting: false,
         showErrorMessages: false,
+        // Becasue there is no response from the auth-backend initially
         authFailureOrSuccessOption: none(),
       );
 }
