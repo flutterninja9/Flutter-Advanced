@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:domain_driven_design/domain/core/errors.dart';
-import 'package:domain_driven_design/domain/core/failures.dart';
+import 'errors.dart';
+import 'failures.dart';
 import 'package:flutter/cupertino.dart';
 
 // immutable is used for forcing the instantiation of only final fields insde the implementor classes

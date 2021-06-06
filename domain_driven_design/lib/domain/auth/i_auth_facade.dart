@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:domain_driven_design/domain/auth/auth_failure.dart';
-import 'package:domain_driven_design/domain/auth/value_objects.dart';
+import 'auth_failure.dart';
+import 'value_objects.dart';
 import 'package:flutter/foundation.dart';
 
 // Abstract classes or Interfactes are just contracts which are later fulfilled by the Implementation of same class
