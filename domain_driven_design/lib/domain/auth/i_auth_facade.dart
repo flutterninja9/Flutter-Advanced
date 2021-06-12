@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'auth_failure.dart';
 import 'value_objects.dart';
-import 'package:flutter/foundation.dart';
 
 // Abstract classes or Interfactes are just contracts which are later fulfilled by the Implementation of same class
 abstract class IAuthFacade {
