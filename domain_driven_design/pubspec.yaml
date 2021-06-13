@@ -23,7 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cloud_firestore: ^2.2.1
+  auto_route: ^2.2.0
+  cloud_firestore: ^2.2.2
   cupertino_icons: ^1.0.3
   dartz: ^0.10.0-nullsafety.0
   firebase_auth: ^1.4.1
@@ -38,6 +39,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  auto_route_generator: ^2.1.0
   build_runner: ^2.0.4
   freezed: ^0.14.2
   injectable_generator: ^1.4.1
