@@ -5,6 +5,7 @@ import 'package:domain_driven_design/domain/core/failures.dart';
 import 'package:domain_driven_design/domain/core/value_object.dart';
 import 'package:domain_driven_design/domain/core/value_transformers.dart';
 import 'package:domain_driven_design/domain/core/value_validators.dart';
+import 'package:flutter/material.dart';
 import 'package:kt_dart/collection.dart';
 
 class NoteBody extends ValueObject<String> {
@@ -51,6 +52,7 @@ class NoteColor extends ValueObject<Color> {
   static const List<Color> predefinedColors = [
     /// Better wqould be to comment the Natural Language for colors in front of them
     /// It will make easier to change the colors
+    Colors.white, // canvas
     Color.fromRGBO(245, 226, 174, 1),
     Color.fromRGBO(206, 232, 176, 1),
     Color.fromRGBO(185, 236, 237, 1),

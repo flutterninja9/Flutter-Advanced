@@ -21,6 +21,15 @@ abstract class ValueObject<T> {
     );
   }
 
+  /// Changes ValueFailure of any type into a universal [dynamic] type
+  /// Helpful in support sustem usecase
+  Either<ValueFailure, Unit> get failureOrUnit {
+    return value.fold(
+      (f) => left(f),
+      (_) => right(unit),
+    );
+  }
+
   bool isValid() => value.isRight();
 
   @override
