@@ -6,4 +6,5 @@ part 'note_failure.freezed.dart';
 class NoteFailure with _$NoteFailure {
   const factory NoteFailure.unexpected() = _Unexpected;
   const factory NoteFailure.insufficientPermission() = _InSufficientPermission;
+  const factory NoteFailure.unableToUpdate() = _UnableToUpdate;
 }
