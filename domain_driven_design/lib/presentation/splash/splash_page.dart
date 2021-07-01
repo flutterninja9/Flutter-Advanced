@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:domain_driven_design/application/auth/auth_bloc/auth_bloc.dart';
 import 'package:domain_driven_design/presentation/routes/routes.gr.dart';
@@ -17,11 +15,16 @@ class SplashPage extends StatelessWidget {
         state.map(
           initial: (_) {},
           authenticated: (_) {
-            //TODO add page re-direction line for authenticated users
-            log('already-signed-in');
+            context.router.pushAndPopUntil(
+              const NotesOverviewPageRoute(),
+              predicate: (_) => false,
+            );
           },
           unAuthenticated: (_) {
-            context.router.popAndPush(const SignInPageRoute());
+            context.router.pushAndPopUntil(
+              const SignInPageRoute(),
+              predicate: (_) => false,
+            );
           },
         );
       },

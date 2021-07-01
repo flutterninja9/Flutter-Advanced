@@ -1,5 +1,8 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:domain_driven_design/application/auth/auth_bloc/auth_bloc.dart';
 import 'package:domain_driven_design/application/auth/sign-in-form/bloc/sign_in_form_bloc.dart';
 import 'package:domain_driven_design/domain/auth/auth_failure.dart';
+import 'package:domain_driven_design/presentation/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,7 +47,13 @@ class SignInForm extends StatelessWidget {
                     );
                   },
                   (_) {
-                    //TODO: Navigate
+                    context.router.pushAndPopUntil(
+                      const NotesOverviewPageRoute(),
+                      predicate: (_) => false,
+                    );
+                    context
+                        .read<AuthBloc>()
+                        .add(const AuthEvent.authStatusRequested());
                   },
                 ));
       },
