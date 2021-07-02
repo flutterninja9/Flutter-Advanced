@@ -4,6 +4,7 @@ import 'package:domain_driven_design/application/notes/note_form/note_form_bloc.
 import 'package:domain_driven_design/application/notes/notes_actor/notes_actor_bloc.dart';
 import 'package:domain_driven_design/application/notes/notes_watcher/notes_watcher_bloc.dart';
 import 'package:domain_driven_design/injection.dart';
+import 'package:domain_driven_design/presentation/notes/notes_overview/widgets/notes_overview_body_widget.dart';
 import 'package:domain_driven_design/presentation/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,6 +90,7 @@ class NotesOverviewPage extends StatelessWidget {
             },
             child: const Icon(Icons.add),
           ),
+          body: const NotesOverviewBody(),
         ),
       ),
     );

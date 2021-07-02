@@ -23,7 +23,7 @@ class SplashPage extends StatelessWidget {
           unAuthenticated: (_) {
             context.router.pushAndPopUntil(
               const SignInPageRoute(),
-              predicate: (_) => false,
+              predicate: (_) => true,
             );
           },
         );
